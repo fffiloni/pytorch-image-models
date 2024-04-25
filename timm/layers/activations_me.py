@@ -136,7 +136,7 @@ def hard_swish_jit_fwd(x):
     return x * (x + 3).clamp(min=0, max=6).div(6.)
 
 
-@torch.jit.script
+#@torch.jit.script
 def hard_swish_jit_bwd(x, grad_output):
     m = torch.ones_like(x) * (x >= 3.)
     m = torch.where((x >= -3.) & (x <= 3.),  x / 3. + .5, m)
@@ -180,7 +180,7 @@ def hard_mish_jit_fwd(x):
     return 0.5 * x * (x + 2).clamp(min=0, max=2)
 
 
-@torch.jit.script
+#@torch.jit.script
 def hard_mish_jit_bwd(x, grad_output):
     m = torch.ones_like(x) * (x >= -2.)
     m = torch.where((x >= -2.) & (x <= 0.), x + 1., m)
