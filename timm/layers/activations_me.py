@@ -103,7 +103,7 @@ def hard_sigmoid_jit_fwd(x, inplace: bool = False):
 
 @torch.jit.script
 def hard_sigmoid_jit_bwd(x, grad_output):
-    m = torch.ones_like(x) * (torch.lt(x, -3.) | torch.gt(x, 3.)) / 6.
+    m = torch.ones_like(x) * ((x < -3.) | (x > 3.)).float() / 6.
     return grad_output * m
 
 
