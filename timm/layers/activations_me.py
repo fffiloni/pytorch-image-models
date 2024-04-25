@@ -101,7 +101,7 @@ def hard_sigmoid_jit_fwd(x, inplace: bool = False):
     return (x + 3).clamp(min=0, max=6).div(6.)
 
 
-@torch.jit.script
+# @torch.jit.script
 def hard_sigmoid_jit_bwd(x: torch.Tensor, grad_output: torch.Tensor) -> torch.Tensor:
     m = torch.ones_like(x) * ((x < -3.) | (x > 3.)).float() / 6.
     return grad_output * m
